@@ -2,28 +2,19 @@
 
 pkgs.mkShell {
   buildInputs = [ 
-    #c libraries
+    # Core libraries
     pkgs.glfw 
-    pkgs.vulkan-volk
     pkgs.vulkan-headers
-    pkgs.vulkan-loader 
-    pkgs.libdecor
-   
+    pkgs.vulkan-loader
+    pkgs.vulkan-tools
     
-
-    #c compiler
+    # Compiler and tools
     pkgs.gcc
-   
-    #tools
-    pkgs.tree
     pkgs.pkg-config
- 
   ];
 
-  shellHook = ''
-    export C_INCLUDE_PATH=${pkgs.vulkan-volk}/include:$C_INCLUDE_PATH
-    export LIBRARY_PATH=${pkgs.vulkan-volk}/lib:$LIBRARY_PATH
-  '';
+  shellHook = ''  
+    export VK_ICD_FILENAMES=${pkgs.mesa}/share/vulkan/icd.d/intel_icd.x86_64.json:${pkgs.mesa}/share/vulkan/icd.d/radeon_icd.x86_64.json
 
-  
+  '';
 }

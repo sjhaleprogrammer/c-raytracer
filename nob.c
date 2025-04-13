@@ -18,16 +18,15 @@
 // We need different libraries/flags depending on the OS
 #if defined(_WIN32)
     // Windows platform libraries with volk
-    #define PLATFORM_LIBS "-lglfw3", "-lgdi32", "-lopengl32", "-lvulkan-1", "-lvolk"
+    #define PLATFORM_LIBS "-lglfw3", "-lgdi32", "-lopengl32", "-lvulkan-1"
 #elif defined(__linux__)
     // Linux platform libraries with volk and libdecor
-    // Note: Ensure libdecor-0-dev (or similar) is installed on your system
-    #define PLATFORM_LIBS "-lglfw", "-lvulkan", "-lvolk", "-ldl", "-lpthread", "-lm"
+    #define PLATFORM_LIBS "-lglfw", "-lvulkan", "-ldl", "-lpthread", "-lm"
 #elif defined(__APPLE__)
     // macOS platform flags for frameworks
     #define PLATFORM_FLAGS "-framework", "Cocoa", "-framework", "IOKit", "-framework", "CoreVideo"
     // macOS libraries
-    #define PLATFORM_LIBS "-lglfw", "-lvulkan", "-lvolk"
+    #define PLATFORM_LIBS "-lglfw", "-lvulkan"
 #else
     #error "Unsupported platform"
 #endif
@@ -57,7 +56,6 @@ int main(int argc, char **argv)
     // Add source files
     nob_cmd_append(&cmd,
         SRC_FOLDER"main.c"
-        // Add other .c files here if needed
     );
 
     // Add include paths if necessary (e.g., if headers are not in standard locations)
