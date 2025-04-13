@@ -15,6 +15,5 @@ pkgs.mkShell {
 
   shellHook = ''  
     export VK_ICD_FILENAMES=${pkgs.mesa}/share/vulkan/icd.d/intel_icd.x86_64.json:${pkgs.mesa}/share/vulkan/icd.d/radeon_icd.x86_64.json
-
   '';
 }
